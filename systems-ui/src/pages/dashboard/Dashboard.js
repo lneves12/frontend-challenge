@@ -1,20 +1,45 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
-import {Col, Container, Row, Button} from "reactstrap";
+import SystemsOrchestrator from "../../common/components/systems/systems-orchestrator/SystemsOrchestrator";
+import SystemOverview from "../../common/components/systems/system-overview/SystemOverview";
+import styles from "./Dashboard.css";
+import Loader from "../../common/components/loader/Loader";
+import SystemsGrid from "./systems-grid/SystemsGrid";
 
 class Dashboard extends Component {
   render() {
     return (
-      <Container>
-        <Row>
-          <Col>Sistema 1</Col>
-          <Col>Sistema 2</Col>
-        </Row>
-      </Container>
+      <SystemsOrchestrator>
+        {
+          ({
+             systems,
+             isSystemsLoading,
+             error,
+           }) =>
+          {
+            if(isSystemsLoading) {
+              return (
+                <div className={styles.loaderContainer}>
+                  <Loader/>
+                </div>
+              );
+            }
+
+            if(error) {
+              return (
+                <div>An error happened while accessing the systems api</div>
+              );
+            }
+
+            return (
+              <SystemsGrid
+                systems={systems}
+                renderSystem={ ({system}) => <SystemOverview system={system} /> } />
+            )
+          }
+        }
+      </SystemsOrchestrator>
     );
   }
 }
-
-Dashboard.propTypes = {};
 
 export default Dashboard;

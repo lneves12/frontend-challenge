@@ -6,10 +6,12 @@ import styles from "./Header.css"
 class Header extends Component {
   render() {
     return (
-      <header className={styles.header}>
-        <img src={suseLogo} className={styles.logo} alt="logo" />
-        <h1 className={styles.title}>Welcome to the SUSE systems dashboard</h1>
-      </header>
+        <nav className="navbar navbar-dark bg-dark">
+          <a className="navbar-brand" href="#">
+            <img width="50" src={suseLogo} alt="logo" />
+            <span className={styles.brandText}> Systems Dashboard</span>
+          </a>
+        </nav>
     );
   }
 }
