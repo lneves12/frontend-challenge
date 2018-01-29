@@ -5,11 +5,13 @@ import styles from './SystemsGrid.css'
 
 const SystemsGrid = ({systems, renderSystem}) => {
   return (
-    <div className={classnames("container-fluid", styles.container)}>
+    <div className={styles.container}>
       <div className="row">
         {
           systems.map((system, position) => (
-            <div className={classnames("col-lg-3 col-md-4 col-xs6", styles.system)}>
+            <div
+              key={system.id}
+              className={classnames("col-lg-3 col-md-4 col-xs6", styles.system)}>
               {
                 renderSystem({
                   system,

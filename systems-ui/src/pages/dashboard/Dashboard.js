@@ -3,7 +3,9 @@ import SystemsOrchestrator from "../../common/components/systems/systems-orchest
 import SystemOverview from "../../common/components/systems/system-overview/SystemOverview";
 import styles from "./Dashboard.css";
 import Loader from "../../common/components/loader/Loader";
-import SystemsGrid from "./systems-grid/SystemsGrid";
+import SystemsGrid from "../../common/components/systems/systems-grid/SystemsGrid";
+import SystemsStatusOverview from "./systems-status-overview/SystemsStatusOverview";
+import Filter from "../../common/components/filter/Filter";
 
 class Dashboard extends Component {
   render() {
@@ -14,6 +16,7 @@ class Dashboard extends Component {
              systems,
              isSystemsLoading,
              error,
+             lastUpdated,
            }) =>
           {
             if(isSystemsLoading) {
@@ -31,9 +34,25 @@ class Dashboard extends Component {
             }
 
             return (
-              <SystemsGrid
-                systems={systems}
-                renderSystem={ ({system}) => <SystemOverview system={system} /> } />
+              <Filter items={systems}>
+                {
+                  ({
+                     filteredItems,
+                     onFilterBy
+                   }) => (
+                    <div className="container-fluid">
+                      <SystemsStatusOverview
+                        systems={filteredItems}
+                        onFilterBy={onFilterBy}
+                        lastUpdated={lastUpdated} />
+                      <SystemsGrid
+                        systems={filteredItems}
+                        renderSystem={ ({system}) => <SystemOverview system={system} /> } />
+                    </div>
+
+                  )
+                }
+              </Filter>
             )
           }
         }

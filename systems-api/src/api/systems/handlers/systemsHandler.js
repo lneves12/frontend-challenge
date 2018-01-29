@@ -2,7 +2,7 @@
 
 const systemsMapper = require('./mapper/systemsMapper');
 
-const shortListSystems = require('./mocks/systems-short-list.json')[0].systems;
+const shortListSystems = require('./mocks/systems-long-list.json')[0].systems;
 
 let systemsHandler = {};
 
