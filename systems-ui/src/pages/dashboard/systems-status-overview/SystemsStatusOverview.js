@@ -4,6 +4,7 @@ import {VictoryPie} from "victory";
 import styles from "./SystemsStatusOverview.css";
 import classnames from "classnames";
 import {getAllStates} from "../../../common/business/systemsState";
+import {systemType} from "../../../common/types/systemsTypes";
 
 class SystemsStatusOverview extends Component {
 
@@ -57,7 +58,7 @@ class SystemsStatusOverview extends Component {
 }
 
 SystemsStatusOverview.propTypes = {
-  systems: PropTypes.array.isRequired,
+  systems: PropTypes.arrayOf(systemType.isRequired).isRequired,
   lastUpdated: PropTypes.string.isRequired,
   onFilterBy: PropTypes.func.isRequired,
   selectedFilters: PropTypes.object.isRequired,

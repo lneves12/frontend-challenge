@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from "classnames";
 import styles from './SystemsGrid.css'
+import {systemType} from "../../../types/systemsTypes";
 
 const SystemsGrid = ({systems, renderSystem}) => {
   return (
@@ -27,7 +28,7 @@ const SystemsGrid = ({systems, renderSystem}) => {
 };
 
 SystemsGrid.propTypes = {
-  systems: PropTypes.array.isRequired,
+  systems: PropTypes.arrayOf(systemType.isRequired).isRequired,
   renderSystem: PropTypes.func.isRequired,
 };
 
