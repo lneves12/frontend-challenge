@@ -9,7 +9,7 @@ let server = new Hapi.Server();
 
 server.connection({
   host: process.env.HOST || 'localhost',
-  port: process.env.PORT || '3001',
+  port: process.env.PORT || '4000',
   routes: { cors: true }
 });
 

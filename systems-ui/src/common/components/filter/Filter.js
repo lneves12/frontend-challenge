@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import _some from 'lodash/some'
+import {getAllStates, getStateIdentifier} from "../../business/systemsState";
 
 class Filter extends Component {
   constructor(props) {
@@ -7,34 +9,53 @@ class Filter extends Component {
 
     this.onFilterBy = this.onFilterBy.bind(this);
     this.state = {
-      filteredBy: null,
+      filteredBy: {
+        [getStateIdentifier()]: getAllStates().map((state) => state.value),
+      },
     };
   }
 
   render() {
-    let filteredItems;
-    const filteredBy = this.state.filteredBy;
-    if(this.state.filteredBy) {
-      filteredItems = this.props.items.filter((item) => item[filteredBy.key] === filteredBy.value);
-    } else {
-      filteredItems = this.props.items;
-    }
+    const filteredItems = this.props.items.filter(
+      (item) => _some(this.state.filteredBy, (filters, typeKey) =>
+        filters.find((filterValue) => filterValue === item[typeKey])
+      )
+    );
 
     return this.props.children({
       onFilterBy: this.onFilterBy,
+      selectedFilters: this.state.filteredBy,
       filteredItems,
     });
   }
 
-  onFilterBy(key, value) {
-    const filteredItems = this.props.items.filter((item) => item[key] === value);
-
-    this.setState({
-      filteredBy: {
-        key,
-        value,
-      }
+  onFilterBy(typeKey, value) {
+    this.setState((state) => {
+      return {
+        ...this.getStateAfterFilterToggle(state.filteredBy, typeKey, value)
+      };
     });
+  }
+
+  getStateAfterFilterToggle(filteredBy, typeKey, value) {
+    const filterGroup = filteredBy[typeKey] || [];
+    const hasFilterSelected = filterGroup.find((filterValue) => filterValue === value);
+
+    if(hasFilterSelected) {
+      return {
+        filteredBy: {
+          ...filteredBy,
+          [typeKey]: [...filterGroup.filter((filterValue) => filterValue !== value)],
+        }
+      };
+    }
+
+    return {
+      filteredBy: {
+        ...filteredBy,
+        [typeKey]: [...filterGroup, value ],
+      }
+    };
   }
 }
 

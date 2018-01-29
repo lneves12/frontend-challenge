@@ -19,3 +19,7 @@ This project started as a create react app. I ended up ejecting the react app co
 configurations (css-modules). If I had the need to keep working on this project I would probably keep all the custom 
 configuration in different files in order to be easier to keep track of create-react-app changes.
 
+
+Speak about performance (react-virtualizes) + Pure Components
+
+Speak about Redux

@@ -38,12 +38,14 @@ class Dashboard extends Component {
                 {
                   ({
                      filteredItems,
+                     selectedFilters,
                      onFilterBy
                    }) => (
                     <div className="container-fluid">
                       <SystemsStatusOverview
                         systems={filteredItems}
                         onFilterBy={onFilterBy}
+                        selectedFilters={selectedFilters}
                         lastUpdated={lastUpdated} />
                       <SystemsGrid
                         systems={filteredItems}

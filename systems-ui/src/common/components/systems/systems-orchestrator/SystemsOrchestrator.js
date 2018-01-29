@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {getAllProducts} from "../../../services/systemsApiService";
 import {getFormattedNow} from "../../../utils/date/date";
 
-const REFRESH_TIME = 4000;
+const REFRESH_TIME = 2000;
 
 // This container helps to manage everything related with the systems fetching/saving data and could be used everywhere. (listing, detail, etc)
 // We could even add some cache logic here if necessary or even add redux if the app complexity grow justifies it
@@ -36,7 +36,7 @@ class SystemsOrchestrator extends Component {
         this.setState({
           isSystemsLoading: false,
           systems: undefined,
-          error: undefined,
+          error: error,
         })
       });
   }
