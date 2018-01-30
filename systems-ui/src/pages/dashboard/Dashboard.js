@@ -10,7 +10,7 @@ import Filter from "../../common/components/filter/Filter";
 class Dashboard extends Component {
   render() {
     return (
-      <SystemsOrchestrator>
+      <SystemsOrchestrator polling>
         {
           ({
              systems,

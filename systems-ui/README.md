@@ -26,10 +26,10 @@ configuration in different files in order to be easier to keep track of create-r
 
 ### Performance
 
-We could improve the perfomance for big lists here using a strategy with pagination or virtualization. We could also use
-PureComponents in some strategic places in order to don't rerender everything. Atm the use of PureComponent here would be 
-worst because the interface is so simple that whenever something change it has to rerender everything (the listing). In the
-future it should be placed strategically. 
+We could improve the perfomance of big lists using a strategy with pagination or virtualization. We could also use
+PureComponents in some strategic places in order to don't rerender everything. Atm the use of PureComponent would be 
+even worst due to the simplicity of the interface that whenever something change it has to always rerender everything 
+(the listing). In the future it should be placed strategically. 
 
 ### Redux 
 

@@ -2,6 +2,7 @@ import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getAllProducts} from "../../../services/systemsApiService";
 import {getFormattedNow} from "../../../utils/date/date";
+import systemDetailMock from "./system-details";
 
 const REFRESH_TIME = 2000;
 
@@ -28,9 +29,11 @@ class SystemsOrchestrator extends Component {
           isSystemsLoading: false,
           lastUpdated: getFormattedNow(),
         })
-        this.refreshInterval = setInterval(() => {
-          this.refreshSystems()
-        }, REFRESH_TIME);
+        if(this.props.polling) {
+          this.refreshInterval = setInterval(() => {
+            this.refreshSystems()
+          }, REFRESH_TIME);
+        }
       })
       .catch((error) => {
         this.setState({
@@ -42,7 +45,7 @@ class SystemsOrchestrator extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.refreshInterval);
+    this.refreshInterval && clearInterval(this.refreshInterval);
   }
 
 
@@ -52,6 +55,7 @@ class SystemsOrchestrator extends Component {
       isSystemsLoading: this.state.isSystemsLoading,
       error: this.state.error,
       lastUpdated: this.state.lastUpdated,
+      getProductById: (id) => systemDetailMock.return[0][id]
     });
   }
 
@@ -72,6 +76,7 @@ class SystemsOrchestrator extends Component {
 
 SystemsOrchestrator.propTypes = {
   children: PropTypes.func.isRequired,
+  polling: PropTypes.bool,
 };
 
 export default SystemsOrchestrator;

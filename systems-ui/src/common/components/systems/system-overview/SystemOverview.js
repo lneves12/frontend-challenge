@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styles from './SystemOverview.css';
 import {formatDateByTimestamp} from "../../../utils/date/date";
 import {getBorderClassByValue, getStateIdentifier} from "../../../business/systemsState";
 import {systemType} from "../../../types/systemsTypes";
+import { Link } from 'react-router-dom'
 
 const SystemOverview = ({system}) => {
   const stateClass = getBorderClassByValue(system[getStateIdentifier()]);
@@ -25,7 +25,7 @@ const SystemOverview = ({system}) => {
         <li className="list-group-item"><b>Modified:</b> {formatDateByTimestamp(system.modified)}</li>
       </ul>
       <div className="card-body">
-        <a href="#" className="card-link">View More</a>
+        <Link to='/system' className="card-link">View More</Link>
       </div>
     </div>
   );
