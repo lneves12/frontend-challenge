@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<nav
+  className="navbar navbar-dark bg-dark"
+>
+  <div
+    className="navbar-brand"
+  >
+    <img
+      alt="logo"
+      src="suse.svg"
+      width="50"
+    />
+    <span
+      className={undefined}
+    >
+       Systems Dashboard
+    </span>
+  </div>
+</nav>
+`;

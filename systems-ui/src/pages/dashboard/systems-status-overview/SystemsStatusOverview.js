@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {VictoryPie} from "victory";
 import styles from "./SystemsStatusOverview.css";
 import classnames from "classnames";
-import {getAllStates} from "../../../common/business/systemsState";
+import {getAllStates, getStateIdentifier} from "../../../common/business/systemsState";
 import {systemType} from "../../../common/types/systemsTypes";
 
 class SystemsStatusOverview extends Component {
@@ -34,7 +34,9 @@ class SystemsStatusOverview extends Component {
                 <input className="form-check-input"
                        type="checkbox"
                        id={`inlineCheckbox${state.value}`}
-                       defaultChecked={this.props.selectedFilters.provision_state_id.includes(state.value)}
+                       defaultChecked={
+                         this.props.selectedFilters[getStateIdentifier()] && this.props.selectedFilters[getStateIdentifier()].includes(state.value)
+                       }
                        onClick={() => this.props.onFilterBy("provision_state_id", state.value)} />
                 <label className="form-check-label" htmlFor={`inlineCheckbox${state.value}`}>{state.description}</label>
               </div>

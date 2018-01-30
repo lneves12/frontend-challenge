@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import styles from './SystemOverview.css';
 import {formatDateByTimestamp} from "../../../utils/date/date";
 import {getBorderClassByValue, getStateIdentifier} from "../../../business/systemsState";
+import {systemType} from "../../../types/systemsTypes";
 
 const SystemOverview = ({system}) => {
   const stateClass = getBorderClassByValue(system[getStateIdentifier()]);
@@ -32,7 +33,7 @@ const SystemOverview = ({system}) => {
 
 // TODO: Common proptypes definition
 SystemOverview.propTypes = {
-  system: PropTypes.object,
+  system: systemType.isRequired,
 };
 
 export default SystemOverview;

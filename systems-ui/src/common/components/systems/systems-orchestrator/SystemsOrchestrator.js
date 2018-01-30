@@ -48,7 +48,7 @@ class SystemsOrchestrator extends Component {
 
   render() {
     return this.props.children({
-      systems: this.state.systems,
+      systems: this.state.systems && this.state.systems.slice(0, 200),
       isSystemsLoading: this.state.isSystemsLoading,
       error: this.state.error,
       lastUpdated: this.state.lastUpdated,

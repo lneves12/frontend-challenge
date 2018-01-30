@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className={undefined}
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-lg-3 col-md-4 col-xs6"
+    >
+      <div
+        className="card border-warning"
+      >
+        <div
+          className="card-body"
+        >
+          <h5
+            className="card-title"
+          >
+            suma-ref31-cli-sles12sp3-1
+          </h5>
+          <p
+            className="card-text"
+          >
+            Initial Registration Parameters:nOS: sles-releasenRelease: 12.3nCPU Arch: x86_64
+          </p>
+        </div>
+        <ul
+          className="list-group list-group-flush"
+        >
+          <li
+            className="list-group-item"
+          >
+            <b>
+              Last Boot:
+            </b>
+             
+            2018-1-24 13:30:57
+          </li>
+          <li
+            className="list-group-item"
+          >
+            <b>
+              Modified:
+            </b>
+             
+            2018-1-24 13:30:57
+          </li>
+        </ul>
+        <div
+          className="card-body"
+        >
+          <a
+            className="card-link"
+            href="#"
+          >
+            View More
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="col-lg-3 col-md-4 col-xs6"
+    >
+      <div
+        className="card border-success"
+      >
+        <div
+          className="card-body"
+        >
+          <h5
+            className="card-title"
+          >
+            suma-ref31-cli-sles12sp3-2
+          </h5>
+          <p
+            className="card-text"
+          >
+            Initial Registration Parameters:nOS: sles-releasenRelease: 12.3nCPU Arch: x86_64
+          </p>
+        </div>
+        <ul
+          className="list-group list-group-flush"
+        >
+          <li
+            className="list-group-item"
+          >
+            <b>
+              Last Boot:
+            </b>
+             
+            2018-1-24 13:30:57
+          </li>
+          <li
+            className="list-group-item"
+          >
+            <b>
+              Modified:
+            </b>
+             
+            2018-1-24 13:30:57
+          </li>
+        </ul>
+        <div
+          className="card-body"
+        >
+          <a
+            className="card-link"
+            href="#"
+          >
+            View More
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
