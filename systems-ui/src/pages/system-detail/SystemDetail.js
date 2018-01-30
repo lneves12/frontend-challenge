@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import SystemsOrchestrator from "../../common/components/systems/systems-orchestrator/SystemsOrchestrator";
 
 class SystemDetail extends Component {
@@ -33,28 +32,28 @@ class SystemDetail extends Component {
                   <dt className="col-sm-3">pythonpath</dt>
                   <dd className="col-sm-9">
                     {
-                      systemDetail.pythonpath.map((python) => <p>{python}</p>)
+                      systemDetail.pythonpath.map((python, position) => <p key={position}>{python}</p>)
                     }
                   </dd>
 
                   <dt className="col-sm-3">saltversioninfo</dt>
                   <dd className="col-sm-9">
                     {
-                      systemDetail.saltversioninfo.map((salt) => <p>{salt}</p>)
+                      systemDetail.saltversioninfo.map((salt, position) => <p key={position}>{salt}</p>)
                     }
                   </dd>
 
                   <dt className="col-sm-3">ipv4</dt>
                   <dd className="col-sm-9">
                     {
-                      systemDetail.ipv4.map((ip) => <p>{ip}</p>)
+                      systemDetail.ipv4.map((ip, position) => <p key={position}>{ip}</p>)
                     }
                   </dd>
 
                   <dt className="col-sm-3">ipv6</dt>
                   <dd className="col-sm-9">
                     {
-                      systemDetail.ipv6.map((ip) => <p>{ip}</p>)
+                      systemDetail.ipv6.map((ip, position) => <p key={position}>{ip}</p>)
                     }
                   </dd>
                 </dl>
@@ -66,7 +65,5 @@ class SystemDetail extends Component {
     );
   }
 }
-
-SystemDetail.propTypes = {};
 
 export default SystemDetail;

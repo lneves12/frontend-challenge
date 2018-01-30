@@ -10,8 +10,8 @@ import {
 
 import "./index.css";
 import "typeface-roboto"
-// I added some problems loading the bootstrap css through webpack, probably some conflict with the webpack css-loader order or post-css
-// I don't think it's worth it to troubleshoot this problem further for the scope of this challenge
+// I had some problems loading the bootstrap css through webpack, probably some conflict with the webpack css-loader order or post-css plugins
+// I don't think it's worth it to troubleshoot this problem further regarding the scope of this challenge
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(

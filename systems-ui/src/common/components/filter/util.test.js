@@ -4,7 +4,7 @@ import {getStateIdentifier} from "../../business/systemsState";
 
 describe("test filterItemsBySelection", () => {
 
-  it('should return no items if no selection give', () => {
+  it('should return no items if no selection given', () => {
     const expectedItems = filterItemsBySelection(mockSystems, {});
 
     expect(expectedItems.length).toBe(0);

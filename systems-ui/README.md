@@ -15,7 +15,7 @@ Dashboard for SUSE systems built with react. It uses the systems-api to gather a
 ### Run tests
 1. yarn test
 
-## Explanation of some taken Options
+## Explanation of some options taken
 ### Configuration
 
 This project started as a create react app. I ended up ejecting the react app configuration because I needed some custom 
