@@ -31,7 +31,6 @@ const SystemOverview = ({system}) => {
   );
 };
 
-// TODO: Common proptypes definition
 SystemOverview.propTypes = {
   system: systemType.isRequired,
 };
