@@ -2,7 +2,7 @@ import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getAllProducts} from "../../../services/systemsApiService";
 import {getFormattedNow} from "../../../utils/date/date";
-import systemDetailMock from "./system-details";
+import systemDetailMock from "./mocks/system-details";
 
 const REFRESH_TIME = 2000;
 
