@@ -1,6 +1,7 @@
 import React from 'react';
 import SystemOverview from './SystemOverview';
 import renderer from 'react-test-renderer';
+import {MemoryRouter} from "react-router";
 
 const mockSystem = {
   "id": "1000010000",
@@ -29,7 +30,9 @@ const mockSystem = {
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    <SystemOverview system={mockSystem}/>
+    <MemoryRouter>
+      <SystemOverview system={mockSystem}/>
+    </MemoryRouter>
   ).toJSON();
   expect(tree).toMatchSnapshot();
 });

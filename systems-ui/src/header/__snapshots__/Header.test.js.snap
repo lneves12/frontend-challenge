@@ -4,8 +4,10 @@ exports[`renders correctly 1`] = `
 <nav
   className="navbar navbar-dark bg-dark"
 >
-  <div
+  <a
     className="navbar-brand"
+    href="/"
+    onClick={[Function]}
   >
     <img
       alt="logo"
@@ -17,6 +19,6 @@ exports[`renders correctly 1`] = `
     >
        Systems Dashboard
     </span>
-  </div>
+  </a>
 </nav>
 `;
