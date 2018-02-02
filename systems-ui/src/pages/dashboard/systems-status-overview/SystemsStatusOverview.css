@@ -1,0 +1,9 @@
+.container {
+  height: 450px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.filtersGroup {
+  margin-top: 50px;
+}
