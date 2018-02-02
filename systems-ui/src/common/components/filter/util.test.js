@@ -1,4 +1,4 @@
-import {filterItemsBySelection, getStateAfterFilterToggle} from './util';
+import {filterItemsBySelection, getFiltersAfterFilterToggle} from './util';
 import {mockSystems} from './mocks/systems';
 import {getStateIdentifier} from "../../business/systemsState";
 
@@ -21,30 +21,25 @@ describe("test filterItemsBySelection", () => {
   });
 })
 
-describe("test getStateAfterFilterToggle", () => {
+describe("test getFiltersAfterFilterToggle", () => {
 
   it('should return the same state after add and remove same filter', () => {
-    let expectedState = getStateAfterFilterToggle({}, getStateIdentifier(), 1);
+    let expectedFilters = getFiltersAfterFilterToggle({filteredBy: {}, typeKey: getStateIdentifier(), value: 1});
 
-    expect(expectedState).toEqual({
-      filteredBy: {[getStateIdentifier()]: [1]}
-    });
+    expect(expectedFilters).toEqual({[getStateIdentifier()]: [1]});
 
-    expectedState = getStateAfterFilterToggle(expectedState, getStateIdentifier(), 1);
+    expectedFilters = getFiltersAfterFilterToggle({filteredBy: expectedFilters, typeKey: getStateIdentifier(), value: 1});
 
-    expect(expectedState).toEqual({
-      filteredBy: {[getStateIdentifier()]: []}
-    });
+    expect(expectedFilters).toEqual({[getStateIdentifier()]: []});
   });
 
   it('should return the correct selection after toggle 3 filters', () => {
-    let expectedState = getStateAfterFilterToggle({}, getStateIdentifier(), 1);
-    expectedState = getStateAfterFilterToggle(expectedState, getStateIdentifier(), 2);
-    expectedState = getStateAfterFilterToggle(expectedState, getStateIdentifier(), 3);
 
-    expect(expectedState).toEqual({
-      filteredBy: {[getStateIdentifier()]: [1,2,3]}
-    });
-  });
+    let expectedFilters = getFiltersAfterFilterToggle({filteredBy: {}, typeKey: getStateIdentifier(), value: 1});
+    expectedFilters = getFiltersAfterFilterToggle({filteredBy: expectedFilters, typeKey: getStateIdentifier(), value: 2});
+    expectedFilters = getFiltersAfterFilterToggle({filteredBy: expectedFilters, typeKey: getStateIdentifier(), value: 3});
+
+    expect(expectedFilters).toEqual({[getStateIdentifier()]: [1,2,3]});
+  })
 
 })

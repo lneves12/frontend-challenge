@@ -1,62 +1,63 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {VictoryPie} from "victory";
 import styles from "./SystemsStatusOverview.css";
 import classnames from "classnames";
 import {getAllStates, getStateIdentifier} from "../../../common/business/systemsState";
 import {systemType} from "../../../common/types/systemsTypes";
+import _isEmpty from "lodash/isEmpty";
 
-class SystemsStatusOverview extends Component {
+const SystemsStatusOverview = ({systems, selectedFilters, onFilterBy, lastUpdated}) => {
 
-  render() {
+  let pieOverviewData = getAllStates().map(state => ({
+    id: state.value,
+    x: state.description,
+    y: 0,
+  }))
+  const pieColors = getAllStates().map(state => state.color);
 
-    let pieOverviewData = getAllStates().map(state => ({
-      id: state.value,
-      x: state.description,
-      y: 0,
-    }))
-    const pieColors = getAllStates().map(state => state.color);
+  systems.forEach((system) => {
+    const group = pieOverviewData.find((group) => group.id === +system.provision_state_id);
+    if(group) {
+      group.y += 1;
+    }
+  });
 
-    this.props.systems.forEach((system) => {
-      const group = pieOverviewData.find((group) => group.id === +system.provision_state_id);
-      if(group) {
-        group.y += 1;
-      }
-    });
+  return (
+    <div className="row">
+      <div className={classnames("col-3", styles.filtersGroup)}>
+        <legend>System State</legend>
+        {
+          getAllStates().map((state) => (
+            <div key={state.value} className="form-check form-check-inline">
+              <input className="form-check-input"
+                     type="checkbox"
+                     id={`inlineCheckbox${state.value}`}
+                     defaultChecked={
+                       selectedFilters[getStateIdentifier()] && selectedFilters[getStateIdentifier()].includes(state.value)
+                     }
+                     onClick={() => onFilterBy({typeKey: getStateIdentifier(), value: state.value })} />
+              <label className="form-check-label" htmlFor={`inlineCheckbox${state.value}`}>{state.description}</label>
+            </div>
+          ))
+        }
 
-    return (
-      <div className="row">
-        <div className={classnames("col-3", styles.filtersGroup)}>
-          <legend>System State</legend>
-          {
-            getAllStates().map((state) => (
-              <div key={state.value} className="form-check form-check-inline">
-                <input className="form-check-input"
-                       type="checkbox"
-                       id={`inlineCheckbox${state.value}`}
-                       defaultChecked={
-                         this.props.selectedFilters[getStateIdentifier()] && this.props.selectedFilters[getStateIdentifier()].includes(state.value)
-                       }
-                       onClick={() => this.props.onFilterBy("provision_state_id", state.value)} />
-                <label className="form-check-label" htmlFor={`inlineCheckbox${state.value}`}>{state.description}</label>
-              </div>
-            ))
-          }
-
-        </div>
-        <div className={classnames("col-6", styles.container)}>
-          <VictoryPie
-            animate={{ duration: 1000 }}
-            colorScale={pieColors}
-            data={pieOverviewData} />
-        </div>
-        <div className={classnames("col-2", styles.filtersGroup)}>
-          <dt>Last Updated</dt>
-          <dd>{this.props.lastUpdated}</dd>
-        </div>
       </div>
-    );
-  }
+      <div className={classnames("col-6", styles.container)}>
+        {
+          !_isEmpty(systems) &&
+          <VictoryPie
+            animate={{duration: 1000}}
+            colorScale={pieColors}
+            data={pieOverviewData}/>
+        }
+      </div>
+      <div className={classnames("col-2", styles.filtersGroup)}>
+        <dt>Last Updated</dt>
+        <dd>{lastUpdated}</dd>
+      </div>
+    </div>
+  );
 }
 
 SystemsStatusOverview.propTypes = {

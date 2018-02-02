@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getAllStates, getStateIdentifier} from "../../business/systemsState";
-import {filterItemsBySelection, getStateAfterFilterToggle} from "./util";
+import {filterItemsBySelection, getFiltersAfterFilterToggle} from "./util";
 
 class Filter extends Component {
   constructor(props) {
@@ -23,10 +23,10 @@ class Filter extends Component {
     });
   }
 
-  onFilterBy(typeKey, value) {
+  onFilterBy({typeKey, value}) {
     this.setState((state) => {
       return {
-        ...getStateAfterFilterToggle(state, typeKey, value)
+        filteredBy: getFiltersAfterFilterToggle({filteredBy: state.filteredBy, typeKey, value})
       };
     });
   }

@@ -9,23 +9,19 @@ export function filterItemsBySelection(items, selection) {
 }
 
 
-export function getStateAfterFilterToggle(state, typeKey, value) {
-  const filterGroup = (state.filteredBy && state.filteredBy[typeKey]) || [];
+export function getFiltersAfterFilterToggle({filteredBy = {}, typeKey, value}) {
+  const filterGroup = filteredBy[typeKey] || [];
   const hasFilterSelected = filterGroup.find((filterValue) => filterValue === value);
 
   if(hasFilterSelected) {
     return {
-      filteredBy: {
-        ...(state.filteredBy),
-        [typeKey]: [...filterGroup.filter((filterValue) => filterValue !== value)],
-      }
+        ...filteredBy,
+        [typeKey]: filterGroup.filter((filterValue) => filterValue !== value),
     };
   }
 
   return {
-    filteredBy: {
-      ...(state.filteredBy),
+      ...filteredBy,
       [typeKey]: [...filterGroup, value ],
-    }
   };
 }

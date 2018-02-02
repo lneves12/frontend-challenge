@@ -1,9 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import SystemsOrchestrator from "../../common/components/systems/systems-orchestrator/SystemsOrchestrator";
 
-class SystemDetail extends Component {
-  render() {
-    return (
+const SystemDetail = () =>
       <SystemsOrchestrator>
         {
           ({getProductById}) => {
@@ -62,8 +60,5 @@ class SystemDetail extends Component {
           }
         }
       </SystemsOrchestrator>
-    );
-  }
-}
 
 export default SystemDetail;
